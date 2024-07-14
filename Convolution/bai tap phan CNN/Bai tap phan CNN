@@ -1,0 +1,56 @@
+1. Convolutional layer để làm gì? Lại sao mỗi layer cần nhiều kernel?
+
+-Áp dụng phép tính convolution vào layer trong neural network ta có thể giải quyết được vấn đề
+lượng lớn parameter mà vẫn lấy ra được các đặc trưng của ảnh.
+
+-Với mỗi kernel khác nhau ta sẽ học được những đặc trưng khác nhau của ảnh, nên trong mỗi
+convolutional layer ta sẽ dùng nhiều kernel để học được nhiều thuộc tính của ảnh. Vì mỗi kernel
+cho ra output là 1 matrix nên k kernel sẽ cho ra k output matrix. Ta kết hợp k output matrix này lại
+thành 1 tensor 3 chiều có chiều sâu k
+
+2.Hệ số của convolutional layer là gì?
+-s: stride , p:padding
+-F: kích thước của kernel (số lẻ)
+-D: độ sâu của kernel
+-K: số lượng kernel trong layer
+
+3.Tự tính lại số lượng parameter, output size của convolutional layer với stride và padding trong
+trường hợp tổng quát.
+
+-Số lượng parameter của convolutional layer: (F*F*D+1)*K
+-Output size của convolutional layer: ((H-(F-1)+2*p-1)/s + 1)*((W - (F-1) +2*p -1)/s +1)*D
+H: số dòng của ma trận ảnh
+W: số cột của ma trận ảnh
+
+4. Hình dưới là mô hình nhận diện chữ số MNIST, K: số kernel, S: stride, P: padding. Tính số
+lượng parameter ở layer và output tương ứng (Tìm a, b, c, d, e, f, g, h, i).
+
+-Hình (a): a=289
+           b=25088
+           c=577
+           d=50176
+           e=0
+           f=12544
+           g=0
+           h=12544
+           i=1568000
+-Hình (b): a=289
+           b=21632
+           c=577
+           d=36864
+           e=0
+           f=9216
+           g=0
+           h=9216
+           i=1179648
+5.Tại sao cần flatten trong CNN?
+
+-Flatten trong CNN nhằm mục đích để giúp cho model học được các đặc trưng của ảnh thông qua quá trình feedforward và
+backpropagation.
+
+6. Tại sao trong model VGG16, ở layer càng sâu thì wight, height giảm nhưng depth lại tăng?
+
+-Qua càng nhiều layer thì số lượng pooling layer càng tăng vì vậy width và height sẽ càng giảm, nhưng ngược lại
+ở các layer sâu thì conv layer có số kernel lớn khiến cho depth của tensor ảnh tăng.
+
+7.
